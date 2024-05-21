@@ -25,8 +25,9 @@ def forgotpin():
         print("The pin has to be in 6 digits")
         forgotpin()
     else:
-        print("The new pin has been stored, please log in")
+        print("the new pin has been stored, please log in")
         pin = recoverpin
+        login()
         
 def depositinterest(p,r,t):
     # A = Pe^(rt) which is the formula for calculating the compound interest
@@ -86,12 +87,39 @@ def login():
             if d > 50000:
                 rate = 3
             elif d > 30000:
-                rate = 1.5                                             
-        
-        
-        
-        
-        
+                rate = 1.5
+            print("Your current deposit interest rate is" +" "+ str(rate) + "%")
+        elif choose == 6:
+            listoption =["1- Calculate your deposit compound interest based on your CB","2-Calculate your deposit compound interest based on input"]
+            for n in listoption:
+                print(n)
+            choice = int(input("Please enter your choice from the list above"))
+            if choice == 1:
+                timing = str(input("How many years you want to invest your money"))
+                if d > 50000:
+                    ratex = 3/100
+                elif d >30000:
+                    ratex = 2/100
+                else:
+                    ratex = 1.5/100
+                print("Your current balance" + " " + " timing" + " " + "years will be")
+                print(depositinterest(cb,ratex,timing))
+            elif choice == 2:
+                timing = str(input("How many years you want to invest your money"))
+                money = str(input("Please enter the amount you would like to deposit"))
+                money = int(money)
+                if d > 50000:
+                    ratex = 3/100
+                elif d >30000:
+                    ratex = 2/100
+                else:
+                    ratex = 1.5/100
+                print("Your current balance" + " " + " timing" + " " + "years will be")
+                print(depositinterest(money,ratex,timing))
+        else:
+            print("Option is not available, back to main menu")
+            login()            
+                                     
     else:
       print("Either of your username or pin is wrong, did you create your account?")
       list1 = ["1-yes", "2-no"]
@@ -113,7 +141,29 @@ def login():
                     login()
           elif inp == 2:
                  print("Please create your account")
-                 signin()           
+                 signin()
+    exit()                             
             
+def mainmenu():
+    optionone = int(input("Choose 1 to sign in and choose 2 to log in"))
+    if optionone == 1:
+        signin()
+    elif optionone == 2:
+        login()
+    else:
+        print("Option is not available")
+        mainmenu()
+    exit()    
+    
+def exit():
+    answer = str(input("Do you still want to conduct transaction? Yes or No"))
+    if answer == "Yes":
+        login()
+    elif answer ==  "No":
+        print("Thank for using this app")
+    else:
+        print("Option is not available")
+        mainmenu()
+mainmenu()                                            
            
        
